@@ -1,0 +1,11 @@
+{
+    "name": "saccas/json-api-model",
+    "require": {
+        "swisnl/json-api-client": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Saccas\\JsonApiModel\\": "src/"
+        }
+    }
+}
