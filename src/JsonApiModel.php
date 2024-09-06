@@ -31,7 +31,10 @@ class JsonApiModel
 
     protected function getRelationSingle(string $relationShipName, string $modelClassName): ?JsonApiModel
     {
-        $relation = $this->dataItem->getRelations()[$relationShipName];
+        $relation = $this->dataItem->getRelations()[$relationShipName] ?? null;
+        if (! isset($relation)) {
+            return null;
+        }
         if (!$relation->hasAssociated()) {
             $self = $this->fetchSelfWithInclude($relationShipName);
             return $self->getRelationSingle($relationShipName, $modelClassName);
