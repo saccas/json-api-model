@@ -50,7 +50,10 @@ class JsonApiModel
 
     protected function getRelationMultiple(string $relationShipName, string $modelClassName): Collection
     {
-        $relation = $this->dataItem->getRelations()[$relationShipName];
+        $relation = $this->dataItem->getRelations()[$relationShipName] ?? null;
+        if (! isset($relation)) {
+            return new Collection();
+        }
         if (!$relation->hasAssociated()) {
             $self = $this->fetchSelfWithInclude($relationShipName);
             return $self->getRelationMultiple($relationShipName, $modelClassName);
