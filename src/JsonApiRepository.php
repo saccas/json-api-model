@@ -30,7 +30,7 @@ class JsonApiRepository
                 foreach ($document->getData() as $dataItem) {
                     yield new $this->modelClass($this->repositoryManager, $document, $dataItem);
                 }
-                $nextUrl = $document->getLinks()['next']?->getHref();
+                $nextUrl = ($document->getLinks()['next'] ?? null)?->getHref();
             }
         };
 
